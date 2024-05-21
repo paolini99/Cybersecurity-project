@@ -22,20 +22,26 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 6)**Ottenimento delle Credenziali di un Server**: Infine, grazie ai dati raccolti, siamo riusciti a ottenere le credenziali di un server.
 
-### Comments
+## Scansione della rete
 
-Comments should be HTML compatible
-
-```html
-<!--
-This is a comment
--->
-```
-Comment below should **NOT** be seen:
-
-<!--
-This is a comment
--->
+a)**Identificazione dell'Indirizzo IP e della Netmask**
+  Eseguire ifconfig:
+  Aprire il terminale sulla macchina attaccante (Kali Linux).
+  Eseguire il comando ifconfig per determinare l'indirizzo IP e la netmask della macchina.
+  **Risultato**: L'indirizzo IP è 10.0.2.19 e la netmask è 255.255.255.0.
+b)**Scansione degli Indirizzi IP nella Rete**
+  Eseguire Nmap per Scansionare la Rete:
+  Utilizzare Nmap per identificare le macchine attive nella rete.
+  **Comando**: nmap 10.0.2.0/24.
+  **Risultato**: Viene identificato un host attivo con l'indirizzo IP 10.0.2.4.
+c)**Scansione Completa della Macchina Target**
+  Eseguire una Scansione Dettagliata con Nmap:
+  Utilizzare Nmap per eseguire una scansione completa dell'host identificato.
+  **Comando**: nmap -v -sS -T4 -A 10.0.2.4.
+   -v: Modalità verbosa.
+   -sS: Scansione SYN (semi-aperta).
+   -T4: Alta velocità di scansione.
+   -A: Abilita la rilevazione del sistema operativo, versioni, script di scansione e traceroute.
 
 ### Horizontal Rules
 
