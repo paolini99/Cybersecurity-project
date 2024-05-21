@@ -5,10 +5,21 @@
 [Docsify](https://docsify.js.org/#/) can generate article, portfolio and documentation websites on the fly. Unlike Docusaurus, Hugo and many other Static Site Generators (SSG), it does not generate static html files. Instead, it smartly loads and parses your Markdown content files and displays them as a website.
 
 ## Introduction
+In questo report, analizzeremo un'esercitazione pratica di cybersecurity in cui abbiamo condotto una serie di attacchi controllati all'interno di un ambiente di test. Abbiamo utilizzato Metasploitable 3 come macchina bersaglio e Kali Linux come macchina attaccante, entrambe configurate per operare sulla stessa rete del difensore. Questa configurazione ci ha permesso di simulare un ambiente realistico in cui un attaccante può tentare di compromettere un sistema target.
 
-In questo report, esamineremo un'esercitazione pratica di cybersecurity focalizzata sull'esecuzione di attacchi controllati all'interno di un ambiente di test. Per condurre questa analisi, abbiamo utilizzato Metasploitable 3 come macchina attaccata e Kali Linux come macchina attaccante. Entrambe le macchine sono state configurate per operare sulla stessa rete del difensore, simulando un ambiente realistico in cui un potenziale attaccante potrebbe tentare di accedere ai sistemi target.
-L'obiettivo principale di questo report è di documentare il processo di attacco utilizzando Metasploitable 3 come target, analizzando le tecniche e gli strumenti impiegati durante l'attacco. 
-### Headings
+L'attacco è stato eseguito seguendo diverse fasi chiave:
+
+1)*Scansione Iniziale della Rete*: In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando strumenti come Nmap. L'obiettivo era identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
+
+Sfruttamento della Porta 445: Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit noto per ottenere le password locali del sistema. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario di password.
+
+Esecuzione di Comandi da Remoto: Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
+
+Raccolta di Hash delle Password: Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
+
+Utilizzo di Mimikatz: Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
+
+Ottenimento delle Credenziali di un Server: Infine, grazie ai dati raccolti, siamo riusciti a ottenere le credenziali di un server, completando con successo il nostro attacco.
 
 Headings from `h1` through `h6` are constructed with a `#` for each level:
 
