@@ -36,11 +36,12 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 ### c)Scansione Completa della Macchina Target
 + Utilizzare Nmap per eseguire una scansione completa dell'host identificato.
-+ Comando: **nmap -v -sS -T4 -A 10.0.2.4.**
-- v: Modalità verbosa.
-- sS: Scansione SYN (semi-aperta).
-- T4: Alta velocità di scansione.
-- A: Abilita la rilevazione del sistema operativo, versioni, script di scansione e traceroute.
++ Comando: **nmap -v -sS -sV -T4 -A 10.0.2.4.**
+  - v: Modalità verbosa.
+  - sS: (SYN stealth scan): esegue una scansione SYN stealth, che è più silenziosa e meno invasiva.
+  - T4: Alta velocità di scansione.
+  - A: Abilita la rilevazione del sistema operativo, versioni, script di scansione e traceroute.
+  - sV (version detection): tenta di identificare la versione dei servizi in esecuzione sulle porte aperte
 + Risultato: La scansione fornisce dettagli sui servizi in esecuzione, le versioni, e ulteriori informazioni sul sistema operativo della macchina target.
 
 ### Horizontal Rules
