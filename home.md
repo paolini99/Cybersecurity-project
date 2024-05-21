@@ -1,10 +1,6 @@
 # Cybersecurity Project
 
-## Create, Share and Collaborate
-
-[Docsify](https://docsify.js.org/#/) can generate article, portfolio and documentation websites on the fly. Unlike Docusaurus, Hugo and many other Static Site Generators (SSG), it does not generate static html files. Instead, it smartly loads and parses your Markdown content files and displays them as a website.
-
-## Introduction
+## Introduzione
 In questo report, analizzeremo un'esercitazione pratica di pentesting in cui abbiamo condotto una serie di attacchi controllati all'interno di un ambiente di test. Abbiamo utilizzato Metasploitable 3 come macchina bersaglio e Kali Linux come macchina attaccante, entrambe configurate per operare sulla stessa rete. Questa configurazione ci ha permesso di simulare un ambiente realistico in cui un attaccante può tentare di compromettere un sistema target.
 Lo scopo principale di questa simulazione è accedere al sistema target e rubare quante più credenziali salvate possibile.
 
