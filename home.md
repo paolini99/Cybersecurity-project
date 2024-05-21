@@ -31,7 +31,7 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 ### b)Scansione degli Indirizzi IP nella Rete
 + Utilizzare Nmap per identificare le macchine attive nella rete.
-+ Comando: nmap 10.0.2.0/24.
++ Comando: **nmap 10.0.2.0/24**.
 + Risultato: Viene identificato un host attivo con l'indirizzo IP 10.0.2.4.
 
 ### c)Scansione Completa della Macchina Target
