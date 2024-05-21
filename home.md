@@ -6,28 +6,8 @@
 
 ## Introduction
 
-**Markdown** is a system-independent markup language that is easier to learn and use than **HTML**.
-
-![The Markdown Mark](images/markdown-red.png)  
-_Figure 1: The Markdown Mark_
-
-Some of the key benefits are:
-
-1. Markdown is simple to learn, with minimal extra characters, so it's also quicker to write content.
-2. Less chance of errors when writing in markdown.
-3. Produces valid XHTML output.
-4. Keeps the content and the visual display separate, so you cannot mess up the look of your site.
-5. Write in any text editor or Markdown application you like.
-6. Markdown is a joy to use!
-
-John Gruber, the author of Markdown, puts it like this:
-
-> The overriding design goal for Markdown’s formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. While Markdown’s syntax has been influenced by several existing text-to-HTML filters, the single biggest source of inspiration for Markdown’s syntax is the format of plain text email.
-> -- <cite>John Gruber</cite>
-
-
-Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like:
-
+In questo report, esamineremo un'esercitazione pratica di cybersecurity focalizzata sull'esecuzione di attacchi controllati all'interno di un ambiente di test. Per condurre questa analisi, abbiamo utilizzato Metasploitable 3 come macchina attaccata e Kali Linux come macchina attaccante. Entrambe le macchine sono state configurate per operare sulla stessa rete del difensore, simulando un ambiente realistico in cui un potenziale attaccante potrebbe tentare di accedere ai sistemi target.
+L'obiettivo principale di questo report è di documentare il processo di attacco utilizzando Metasploitable 3 come target, analizzando le tecniche e gli strumenti impiegati durante l'attacco. 
 ### Headings
 
 Headings from `h1` through `h6` are constructed with a `#` for each level:
