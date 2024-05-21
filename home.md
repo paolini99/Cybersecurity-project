@@ -5,52 +5,22 @@
 [Docsify](https://docsify.js.org/#/) can generate article, portfolio and documentation websites on the fly. Unlike Docusaurus, Hugo and many other Static Site Generators (SSG), it does not generate static html files. Instead, it smartly loads and parses your Markdown content files and displays them as a website.
 
 ## Introduction
-In questo report, analizzeremo un'esercitazione pratica di cybersecurity in cui abbiamo condotto una serie di attacchi controllati all'interno di un ambiente di test. Abbiamo utilizzato Metasploitable 3 come macchina bersaglio e Kali Linux come macchina attaccante, entrambe configurate per operare sulla stessa rete del difensore. Questa configurazione ci ha permesso di simulare un ambiente realistico in cui un attaccante può tentare di compromettere un sistema target.
+In questo report, analizzeremo un'esercitazione pratica di pentesting in cui abbiamo condotto una serie di attacchi controllati all'interno di un ambiente di test. Abbiamo utilizzato Metasploitable 3 come macchina bersaglio e Kali Linux come macchina attaccante, entrambe configurate per operare sulla stessa rete. Questa configurazione ci ha permesso di simulare un ambiente realistico in cui un attaccante può tentare di compromettere un sistema target.
+Lo scopo principale di questa simulazione è accedere al sistema target e rubare quante più credenziali salvate possibile.
 
 L'attacco è stato eseguito seguendo diverse fasi chiave:
 
-1)*Scansione Iniziale della Rete*: In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando strumenti come Nmap. L'obiettivo era identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
+1)**Scansione Iniziale della Rete**: In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando strumenti come Nmap. L'obiettivo era identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
 
-Sfruttamento della Porta 445: Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit noto per ottenere le password locali del sistema. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario di password.
+2)**Sfruttamento della Porta 445**: Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit noto per ottenere le password locali del sistema. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario di password.
 
-Esecuzione di Comandi da Remoto: Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
+3)**Esecuzione di Comandi** da Remoto: Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
 
-Raccolta di Hash delle Password: Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
+4)**Raccolta di Hash delle Password**: Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
 
-Utilizzo di Mimikatz: Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
+5)**Utilizzo di Mimikatz**: Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
 
-Ottenimento delle Credenziali di un Server: Infine, grazie ai dati raccolti, siamo riusciti a ottenere le credenziali di un server, completando con successo il nostro attacco.
-
-Headings from `h1` through `h6` are constructed with a `#` for each level:
-
-```markdown
-# h1 Heading
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
-```
-
-Renders to:
-
-<h1> h1 Heading </h1>
-<h2>  h2 Heading </h2>
-<h3>  h3 Heading </h3>
-<h4>  h4 Heading </h4>
-<h5>  h5 Heading </h5>
-<h6>  h6 Heading </h6>
-
-HTML:
-
-```html
-<h1>h1 Heading</h1>
-<h2>h2 Heading</h2>
-<h3>h3 Heading</h3>
-<h4>h4 Heading</h4>
-<h5>h5 Heading</h5>
-<h6>h6 Heading</h6>
-```
+6)**Ottenimento delle Credenziali di un Server**: Infine, grazie ai dati raccolti, siamo riusciti a ottenere le credenziali di un server.
 
 ### Comments
 
