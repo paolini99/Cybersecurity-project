@@ -20,6 +20,9 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 7)**Ottenimento delle Credenziali di un Server**: Infine, grazie ai dati raccolti, siamo riusciti a ottenere le credenziali di un server.
 
+(8)una volta finito tutto attivo acccount disattivati
+e acceddo a openssh con credenziali trovate con ausiliaryu smb dump o mimikataz
+
 ## Scansione della rete
 
 ### a)Identificazione dell'Indirizzo IP e della Netmask
