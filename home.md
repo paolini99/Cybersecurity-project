@@ -59,9 +59,9 @@ Utilizza il comando Kali cewl per costruire un nuovo elenco di parole dal conten
 
 **3)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
-**4)Impostare il file dei nomi utente**: Specificare il percorso del file che contiene i nomi utente: ```set user_file /home/kali/metasploitable3.txt```.
+**4)Impostare il file dei nomi utente**: Specificare il percorso del file che contiene i nomi utente: ```set USER_FILE /home/kali/metasploitable3.txt```.
 
-**5)Impostare il file delle password**: Specificare il percorso del file che contiene le password: ```set pass_file /home/kali/metasploitable3.txt.```
+**5)Impostare il file delle password**: Specificare il percorso del file che contiene le password: ```set PASS_FILE /home/kali/metasploitable3.txt.```
 
 **6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
