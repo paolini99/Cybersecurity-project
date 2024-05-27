@@ -138,7 +138,7 @@ Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz
 Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo stesso dominio dell' utente Administrator.
 
 ## Eliminazione tracce
-
+**1)Eliminazione logs**: Eliminare i logs digitando il comando: ```clearev``` nella sessione meterpreter.
 
 
 
