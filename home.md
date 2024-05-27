@@ -20,9 +20,7 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 7)**Eliminazione tracce**: Cerchiamo di eliminare quante piu tracce possibli.
 
-(8)una volta finito tutto attivo acccount disattivati
-e acceddo a openssh con credenziali trovate con ausiliaryu smb dump o mimikataz
-
+(8)a)cerco file sensibili b)faccio attacco dos e sviare attenzione c)attacco alcuni database per ottenere ulteriori credenziali(mysql)
 ## Scansione della rete
 
 ### a)Identificazione dell'Indirizzo IP e della Netmask
