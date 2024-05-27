@@ -18,7 +18,7 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
                         
 6)**Utilizzo di Mimikatz**: Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
 
-7)**Ottenimento delle Credenziali di un Server**: Infine, grazie ai dati raccolti, siamo riusciti a ottenere le credenziali di un server.
+7)**Eliminazione tracce**: Cerchiamo di eliminare quante piu tracce possibli.
 
 (8)una volta finito tutto attivo acccount disattivati
 e acceddo a openssh con credenziali trovate con ausiliaryu smb dump o mimikataz
@@ -138,14 +138,8 @@ Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz
 
 #### Considerazioni
 Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo stesso dominio dell' utente Administrator.
-Osservando il nome potrebbero essere credenziali valide per la gestione di un server.
 
-#### Osservazine
-Provando a connettermi con il protocollo ssh ```ssh 10.0.2.4@sshd_server``` non riesco a connettermi quindi deduco che l'account è disabilitato.
-Eseguo questo operazioni per controllare se l' account è disabilitato ed eventualmente attivarlo:
-**1)** Digito ```shell``` su meterpeter.
-**2)**
-
+## Eliminazione tracce
 
 
 
