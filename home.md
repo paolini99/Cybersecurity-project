@@ -18,7 +18,9 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
                         
 6)**Utilizzo di Mimikatz**: Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
 
-7)**Eliminazione tracce**: Cerchiamo di eliminare quante piu tracce possibli.
+7)**Brute Force su Mysql**: Cerchiamo di accedere al server MySql per rubare ulteriori credenziali eseguendo un brute force con il dizionario eseguito in precedenza.
+
+8)**Eliminazione tracce**: Cerchiamo di eliminare quante piu tracce possibli.
 
 (8)a)cerco file sensibili b)faccio attacco dos e sviare attenzione c)attacco alcuni database per ottenere ulteriori credenziali(mysql)
 ## Scansione della rete
@@ -136,6 +138,13 @@ Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz
 
 #### Considerazioni
 Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo stesso dominio dell' utente Administrator.
+
+## Brute force MySql
+Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
+Eseguiamo questi passaggi:
+1)nmap --script mysq* -p3306 10.0.2.4
+
+
 
 ## Eliminazione tracce
 **1)Eliminazione logs**: Eliminare i logs digitando il comando: ```clearev``` nella sessione meterpreter.
