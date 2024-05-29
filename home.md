@@ -142,7 +142,7 @@ Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo ste
 ## Brute force MySql
 Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
 Eseguiamo questi passaggi:
-1)nmap --script mysq* -p3306 10.0.2.4
+1)Per utilizzare alcuni script di nmap per vedere se è soggetto a qualche vulnerabilità digitiamo: ```nmap --script all -p3306 10.0.2.4```
 
 
 
