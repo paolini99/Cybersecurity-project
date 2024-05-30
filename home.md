@@ -35,7 +35,8 @@ Seguiamo questi passaggi:
   
 **Risultato**: La scansione fornisce dettagli sui servizi in esecuzione, le versioni, e ulteriori informazioni sul sistema operativo della macchina target.
 
-##### Riferimenti
+
+#### Riferimenti
 https://www.redhat.com/sysadmin/quick-nmap-inventory
 
 ## Exploit della porta 445
@@ -59,11 +60,11 @@ Digitare nel terminare: ```cewl -d 0 -w metasploitable3.txt https://github.com/r
 
 **6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
-#### RISULTATO
+**RISULTATO**:
 Abbiamo ottenuto delle credenziali di accesso SMB.
 
 
-##### Riferimenti:
+#### Riferimenti:
 + https://www.geeksforgeeks.org/cewl-tool-creating-custom-wordlists-tool-in-kali-linux/
 + https://www.hackingarticles.in/password-crackingsmb/
 
