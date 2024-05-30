@@ -16,6 +16,7 @@ Seguiamo questi passaggi:
 + Eseguire il comando ```ifconfig``` per determinare l'indirizzo IP e la netmask della macchina.
 
 **Risultato**: L'indirizzo IP è 10.0.2.19 e la netmask è 255.255.255.0.
+
 **Cosiderazioni**: L'indirizzo IP 10.0.2.19 con una netmask di 255.255.255.0 significa che i primi 24 bit dell'indirizzo IP sono dedicati all'identificazione della rete, mentre gli ultimi 8 bit sono destinati agli host all'interno della rete. Utilizzando la notazione CIDR (/24), possiamo rappresentare questa rete come 10.0.2.0/24, il che indica che i primi 24 bit sono la parte di rete fissa e gli ultimi 8 bit possono variare per identificare singoli host all'interno della rete.
 
 ### b)Scansione degli Indirizzi IP nella Rete
