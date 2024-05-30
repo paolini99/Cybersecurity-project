@@ -50,6 +50,8 @@ Utilizziamo il comando Kali cewl per costruire un nuovo elenco di parole dal con
 Digitare nel terminare: ```cewl -d 0 -w metasploitable3.txt https://github.com/rapid7/metasploitable3/wiki/Configuration``` (l'opzione -d 0 indica che i collegamenti ipertestuali non devono essere seguiti)
 
 ### b)Esexuzione Exploit
+Andiamo ad eseguire l'exploit seguendo questa procedura:
+
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
 **2)Caricare il modulo SMB Login Scanner**: Una volta aperto Metasploit, caricare il modulo per eseguire un attacco brute force sull'SMB (porta 445): ```use auxiliary/scanner/smb/smb_login```.
@@ -62,9 +64,9 @@ Digitare nel terminare: ```cewl -d 0 -w metasploitable3.txt https://github.com/r
 
 **6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
-**RISULTATO**:
-Abbiamo ottenuto delle credenziali di accesso SMB.
+**RISULTATO**: Abbiamo ottenuto delle credenziali di accesso SMB.
 
+**Cosiderazioni**: Questo attacco potrebbe generare un sacco di rumore, in quanto verrà visualizzato come un tentativo di accesso non riuscito nei registri eventi. Penseremo in seguito a come fare pulizia.
 
 #### Riferimenti:
 + https://www.geeksforgeeks.org/cewl-tool-creating-custom-wordlists-tool-in-kali-linux/
@@ -73,9 +75,10 @@ Abbiamo ottenuto delle credenziali di accesso SMB.
 
 ## Determinazione utenti locali Sam
  Utilizzando le credenziali SMB, abbiamo utilizzato un altro exploit per determinare gli utenti locali della macchina.
-**1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
+ 
+**1)Aprire Metasploit**: Aprire il terminale e digitare il comando ```msfconsole``` per avviare Metasploit.
 
-**2)Caricare il modulo SMB enumusers Scanner**: Una volta aperto Metasploit, caricare il modulo per eseguire una scansione degli utenti locali Sam: ```auxiliary/scanner/smb/smb_enumusers```.
+**2)Caricare il modulo SMB enumusers Scanner**: Una volta aperto Metasploit, caricare il modulo ```auxiliary/scanner/smb/smb_enumusers``` per eseguire una scansione degli utenti locali Sam: .
 
 **3)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
@@ -89,8 +92,8 @@ Abbiamo ottenuto delle credenziali di accesso SMB.
 Abbiamo ottenuto gli utenti locali SAM che possiamo salvare in un file *user.txt*.
 
 #### CONSIDERAZIONI
-Noto che nel file che ho salvato ci sono alcuni utenti presenti anche nelle credenziali SMB.
-Potrei provare un exploit usando le stesse credenziali usate per SMB.
+Si può notare che nel file che ho salvato ci sono alcuni utenti presenti anche nelle credenziali SMB.
+Potremmo provare un exploit usando le stesse credenziali usate per SMB.
 
 #### Riferimenti:
 https://www.hackingarticles.in/smb-penetration-testing-port-445/
