@@ -18,7 +18,7 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
                         
 6)**Utilizzo di Mimikatz**: Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
 
-7)**Brute Force su Mysql**: Cerchiamo di accedere al server MySql per rubare ulteriori credenziali eseguendo un brute force con il dizionario eseguito in precedenza.
+7)**Accesso a Mysql**: Cerchiamo di accedere al server MySql per rubare ulteriori credenziali eseguendo un brute force con il dizionario eseguito in precedenza.
 
 8)**Eliminazione tracce**: Cerchiamo di eliminare quante piu tracce possibli.
 
@@ -139,10 +139,20 @@ Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz
 #### Considerazioni
 Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo stesso dominio dell' utente Administrator.
 
-## Brute force MySql
+## Accesso MySql
 Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
-Eseguiamo questi passaggi:
-1)Per utilizzare alcuni script di nmap per vedere se è soggetto a qualche vulnerabilità digitiamo: ```nmap --script all -p3306 10.0.2.4```
+Questa volta invece di utilizzare metasploit proviamo a utilizzare gli script NSE di nmap per verificare se è presente qualche vulnerabilità o impostazione di default.
+Eseguiamo ```nmap --script all -p3306 10.0.2.4```.
+RISULTATO: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
+
+A questo punto seguiamo questa procedura per scaricare le credenziali disponibli dal database:
+**1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root ```.
+**2)** Digitare ```SHOW DATABASE``` per vedere i database disponibili.
+**3)** Digitare ```USE WORDPRESS``` per selezionare il database di wordpress (potrei trovare delle credenziali).
+**4)** Digitare ```SELECT * FROM wp_users` per cercare ionformazioni in questa tabella.
+**5)** Salviamo le credenziali su un file nel nostro pc.
+
+
 
 
 
