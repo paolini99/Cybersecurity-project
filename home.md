@@ -142,7 +142,9 @@ Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo ste
 ## Accesso MySql
 Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
 Questa volta invece di utilizzare metasploit proviamo a utilizzare gli script NSE di nmap per verificare se è presente qualche vulnerabilità o impostazione di default.
+
 Eseguiamo ```nmap --script all -p3306 10.0.2.4```.
+
 RISULTATO: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
 
 A questo punto seguiamo questa procedura per scaricare le credenziali disponibli dal database:
