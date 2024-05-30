@@ -1,60 +1,50 @@
 # Cybersecurity Project
 
 ## Introduzione
-In questo report, analizzeremo un'esercitazione pratica di pentesting in cui abbiamo condotto una serie di attacchi controllati all'interno di un ambiente di test. Abbiamo utilizzato Metasploitable 3 come macchina bersaglio e Kali Linux come macchina attaccante, entrambe configurate per operare sulla stessa rete. Questa configurazione ci ha permesso di simulare un ambiente realistico in cui un attaccante può tentare di compromettere un sistema target.
-Lo scopo principale di questa simulazione è accedere al sistema target e rubare quante più credenziali salvate possibile.
-
-L'attacco è stato eseguito seguendo diverse fasi chiave:
-
-1)**Scansione Iniziale della Rete**: In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando strumenti come Nmap. L'obiettivo era identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
-
-2)**Exploit della Porta 445**: Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit noto per ottenere le credenziali smb. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario di password.
-
-3)**Determinazione utenti locali Sam**: Utilizzo le credenziali SMB, utilizzo un' altro exploit per determinare gli utenti locali.
-
-4)**Esecuzione di Comandi da Remoto**: Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
-
-5)**Rubare le credenziali SAM**: Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
-                        
-6)**Utilizzo di Mimikatz**: Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
-
-7)**Accesso a Mysql**: Cerchiamo di accedere al server MySql per rubare ulteriori credenziali eseguendo un brute force con il dizionario eseguito in precedenza.
-
-8)**Eliminazione tracce**: Cerchiamo di eliminare quante piu tracce possibli.
-
-9)**Attacco Dos**: Eseguiamo un attacco dos dopo aver rubato le credenziali, in questo modo cerchiamo di sviare il difensore da quanto accaduto concentrando le sue risorse su questo attacco.
+In questo report, esamineremo un'esercitazione pratica di penetration testing in cui abbiamo condotto una serie di attacchi controllati all'interno di un ambiente di test. Abbiamo utilizzato Metasploitable 3 come macchina bersaglio e Kali Linux come macchina attaccante, entrambe configurate per operare sulla stessa rete. Questa configurazione ci ha permesso di simulare un ambiente realistico in cui un attaccante può tentare di compromettere un sistema target.
+Lo scopo principale di questa simulazione è accedere al sistema target e rubare quante più credenziali possibili.
+L'attacco è stato eseguito seguendo diverse fasi chiave.
 
 ## Scansione della rete
+In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando Nmap. L'obiettivo era identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
+
+Dobbiamo identificare il nostro indirizzo IP e la netmask al fine di eseguire una scansione della rete e individuare gli indirizzi IP disponibili per eventuali attacchi. Utilizzando l'indirizzo IP e la netmask, possiamo calcolare il range di indirizzi IP validi nella nostra rete locale, escludendo gli indirizzi non utilizzabili come quelli di broadcast e di rete stessa. Questo ci consente di configurare correttamente gli strumenti di scansione per eseguire una scansione mirata e precisa, concentrando le risorse sui dispositivi e servizi attivi all'interno della nostra rete locale.
 
 ### a)Identificazione dell'Indirizzo IP e della Netmask
-+ Aprire il terminale sulla macchina attaccante (Kali Linux).
+Seguiamo questi passaggi:
++ Aprire il terminale sulla propria macchina (Kali Linux).
 + Eseguire il comando ```ifconfig``` per determinare l'indirizzo IP e la netmask della macchina.
-+ Risultato: L'indirizzo IP è 10.0.2.19 e la netmask è 255.255.255.0.
+
+**Risultato**: L'indirizzo IP è 10.0.2.19 e la netmask è 255.255.255.0.
+**Cosiderazioni**: L'indirizzo IP 10.0.2.19 con una netmask di 255.255.255.0 significa che i primi 24 bit dell'indirizzo IP sono dedicati all'identificazione della rete, mentre gli ultimi 8 bit sono destinati agli host all'interno della rete. Utilizzando la notazione CIDR (/24), possiamo rappresentare questa rete come 10.0.2.0/24, il che indica che i primi 24 bit sono la parte di rete fissa e gli ultimi 8 bit possono variare per identificare singoli host all'interno della rete.
 
 ### b)Scansione degli Indirizzi IP nella Rete
-+ Utilizzare Nmap per identificare le macchine attive nella rete.
-+ Comando: ```nmap 10.0.2.0/24```.
-+ Risultato: Viene identificato un host attivo con l'indirizzo IP 10.0.2.4.
++ Aprire il terminale sulla propria macchina (Kali Linux).
++ Digitare ```nmap 10.0.2.0/24```.
+
+**Risultato**: Viene identificato un host attivo con l'indirizzo IP 10.0.2.4.
 
 ### c)Scansione Completa della Macchina Target
-+ Utilizzare Nmap per eseguire una scansione completa dell'host identificato.
-+ Comando:```nmap -v -sS -sV -T4 -A 10.0.2.4.```
++ Aprire il terminale sulla propria macchina (Kali Linux).
++ Digitare: ```nmap -v -sS -sV -T4 -A 10.0.2.4.```
   - v: Modalità verbosa.
   - sS: (SYN stealth scan): esegue una scansione SYN stealth, che è più silenziosa e meno invasiva.
   - T4: Alta velocità di scansione.
   - A: Abilita la rilevazione del sistema operativo, versioni, script di scansione e traceroute.
   - sV (version detection): tenta di identificare la versione dei servizi in esecuzione sulle porte aperte
-+ Risultato: La scansione fornisce dettagli sui servizi in esecuzione, le versioni, e ulteriori informazioni sul sistema operativo della macchina target.
+  
+**Risultato**: La scansione fornisce dettagli sui servizi in esecuzione, le versioni, e ulteriori informazioni sul sistema operativo della macchina target.
 
 ##### Riferimenti
 https://www.redhat.com/sysadmin/quick-nmap-inventory
 
 ## Exploit della porta 445
-Adesso andremo a creare un dizionario che utilizzeremo per i nomi utente e password. Successivamente, utilizzeremo un exploit per tentare il brute force sulla porta 445.
+Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit di brute force noto per ottenere le credenziali SMB. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario per gli username e password.
+Adesso andremo a creare un dizionario che utilizzeremo per i nomi utente e password. Successivamente, utilizzeremo un exploit per tentare il brute force sulla porta 445 utilizzando questo dizionario.
 
 ### a)Creazione del dizionario
-Utilizza il comando Kali cewl per costruire un nuovo elenco di parole dal contenuto della pagina di configurazione di metasploitable3: 
-```cewl -d 0 -w metasploitable3.txt https://github.com/rapid7/metasploitable3/wiki/Configuration``` (l'opzione -d 0 indica che i collegamenti ipertestuali non devono essere seguiti)
+Utilizziamo il comando Kali cewl per costruire un nuovo elenco di parole dal contenuto della pagina di configurazione di metasploitable3: 
+Digitare nel terminare: ```cewl -d 0 -w metasploitable3.txt https://github.com/rapid7/metasploitable3/wiki/Configuration``` (l'opzione -d 0 indica che i collegamenti ipertestuali non devono essere seguiti)
 
 ### b)Esexuzione Exploit
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
@@ -79,6 +69,7 @@ Abbiamo ottenuto delle credenziali di accesso SMB.
 
 
 ## Determinazione utenti locali Sam
+ Utilizzando le credenziali SMB, abbiamo utilizzato un altro exploit per determinare gli utenti locali della macchina.
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
 **2)Caricare il modulo SMB enumusers Scanner**: Una volta aperto Metasploit, caricare il modulo per eseguire una scansione degli utenti locali Sam: ```auxiliary/scanner/smb/smb_enumusers```.
@@ -102,6 +93,8 @@ Potrei provare un exploit usando le stesse credenziali usate per SMB.
 https://www.hackingarticles.in/smb-penetration-testing-port-445/
 
 ## Esecuzione di Comandi da Remoto
+Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
+
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
@@ -119,12 +112,14 @@ https://www.hackingarticles.in/smb-penetration-testing-port-445/
 Abbiamo ottenuto una sessione meterpeter sulla macchina.
 
 ## Rubare le credenziali SAM
+Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
 Digitare  ```hashdump``` e salvare le password su file credenzialiSAM.txt.
 
 #### Considerazioni
 Posso conservare queste password per tentare un attacco di forza bruta offline e scoprire le password in chiaro di ogni utente, per eventualmente tentare un movimento laterale o accedere a qualche sito web. Posso anche conservare queste credenziali per tentare un pass the hash.
 
 ## Utilizzo di Kiwi (mimikatz)
+ Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
 
 **1)Aprire Mimikatz**: Digitare ```load kiwi``` nella sessione meterpeter.
 
@@ -141,6 +136,7 @@ Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz
 Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo stesso dominio dell' utente Administrator.
 
 ## Accesso MySql
+Abbiamo cercato di accedere al server MySQL per rubare ulteriori credenziali eseguendo un brute force con il dizionario utilizzato in precedenza.
 Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
 Questa volta invece di utilizzare metasploit proviamo a utilizzare gli script NSE di nmap per verificare se è presente qualche vulnerabilità o impostazione di default.
 
@@ -162,9 +158,11 @@ A questo punto seguiamo questa procedura per scaricare le credenziali disponibli
 
 
 ## Eliminazione tracce
+Abbiamo cercato di eliminare quante più tracce possibili dell'attacco per ridurre le possibilità di rilevamento e investigazione.
 **1)Eliminazione logs**: Eliminare i logs digitando il comando: ```clearev``` nella sessione meterpreter.
 
 ## Attacco DOS
+Infine, abbiamo eseguito un attacco DoS (Denial of Service) dopo aver rubato le credenziali. Questo è stato fatto per sviare l'attenzione del difensore dall'attacco effettivo, concentrando le sue risorse su questo evento.
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
