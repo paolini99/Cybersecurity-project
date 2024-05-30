@@ -26,6 +26,7 @@ Seguiamo questi passaggi:
 **Risultato**: Viene identificato un host attivo con l'indirizzo IP 10.0.2.4.
 
 ### c)Scansione Completa della Macchina Target
+Eseguiamo una scansione completa del target per poter raccogliere quante più informazioni possibili prima di eseguire il nostro attacco
 + Aprire il terminale sulla propria macchina (Kali Linux).
 + Digitare: ```nmap -v -sS -sV -T4 -A 10.0.2.4.```
   - v: Modalità verbosa.
