@@ -134,7 +134,7 @@ Vediamo se è possibile estrarre qualche altra informazione dal registro LSSA.
 
 **5)Rubare dal registro LSSA**: Digitare ```lsa_dump_system``` per ottenere le informazioni disponibili salvate nel registro LSSA.
 
-#### Osservazine
+#### Osservazione
 Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura), quindi spostiamo la sessione su un altro processo.
 
 #### Considerazioni
@@ -145,29 +145,33 @@ Abbiamo cercato di accedere al server MySQL per rubare ulteriori credenziali ese
 Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
 Questa volta invece di utilizzare metasploit proviamo a utilizzare gli script NSE di nmap per verificare se è presente qualche vulnerabilità o impostazione di default.
 
-Eseguiamo ```nmap --script all -p3306 10.0.2.4```.
+Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 
-RISULTATO: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
+**RISULTATO**: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
 
-A questo punto seguiamo questa procedura per scaricare le credenziali disponibli dal database:
+A questo punto seguiamo questa procedura per ottenere le credenziali disponibli dal database:
 
-**1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root ```.
+**1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root ``` nel terminale.
 
-**2)** Digitare ```SHOW DATABASE``` per vedere i database disponibili.
+**2)** Digitare ```SHOW DATABASES``` per vedere i database disponibili.
 
 **3)** Digitare ```USE WORDPRESS``` per selezionare il database di wordpress (potrei trovare delle credenziali).
 
-**4)** Digitare ```SELECT * FROM wp_users` per cercare ionformazioni in questa tabella.
+**4)** Digitare ```SELECT * FROM wp_users` per cercare informazioni utili in questa tabella.
 
 **5)** Salviamo le credenziali su un file nel nostro pc.
 
+**RISULTATO**: Abbiamo ottenuto le credenziali di wordpress.
+
 
 ## Eliminazione tracce
-Abbiamo cercato di eliminare quante più tracce possibili dell'attacco per ridurre le possibilità di rilevamento e investigazione.
+Una volta eseguito l'attacco, abbiamo cercato di eliminare quante più tracce possibili per ridurre le possibilità di rilevamento e investigazione.
+
 **1)Eliminazione logs**: Eliminare i logs digitando il comando: ```clearev``` nella sessione meterpreter.
 
 ## Attacco DOS
-Infine, abbiamo eseguito un attacco DoS (Denial of Service) dopo aver rubato le credenziali. Questo è stato fatto per sviare l'attenzione del difensore dall'attacco effettivo, concentrando le sue risorse su questo evento.
+Infine, abbiamo eseguito un attacco DoS (Denial of Service) sfruttando la vulnerabilità *CVE-2012-0002* che causa un buffer overflow. Questo è stato fatto per sviare l'attenzione del difensore dall'attacco effettivo, concentrando le sue risorse su questo evento.
+Questo modulo sfrutta la vulnerabilità RDP MS12-020. Il difetto può essere riscontrato nel modo in cui viene gestito il pacchetto T.125 ConnectMCSPDU nel campo maxChannelIDs, che risulterà nell'utilizzo di un puntatore non valido, causando quindi una condizione di negazione del servizio. 
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
@@ -187,6 +191,7 @@ Se il la macchina è vulnerabile proseguire.
 
 ##### Riferimenti:
 https://tremblinguterus.blogspot.com/2020/11/metasploitable-3-windows-walkthrough_88.html?m=1
+https://www.rapid7.com/db/modules/auxiliary/dos/windows/rdp/ms12_020_maxchannelids/
 
 
 
