@@ -155,6 +155,8 @@ Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 
 **RISULTATO**: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
 
+![The Markdown Mark](images/mysql.PNG) 
+
 A questo punto seguiamo questa procedura per ottenere le credenziali disponibli dal database:
 
 **1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root -p``` nel terminale.
@@ -169,7 +171,7 @@ A questo punto seguiamo questa procedura per ottenere le credenziali disponibli 
 
 **RISULTATO**: Abbiamo ottenuto le credenziali di wordpress.
 
-![The Markdown Mark](images/mysql.PNG) 
+
 ![The Markdown Mark](images/mysql2.PNG)
 
 ## Eliminazione tracce
