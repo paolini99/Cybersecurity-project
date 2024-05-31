@@ -25,6 +25,8 @@ Seguiamo questi passaggi:
 
 **Risultato**: Viene identificato un host attivo con l'indirizzo IP 10.0.2.4.
 
+![The Markdown Mark](images/nmap.PNG) 
+
 ### c)Scansione Completa della Macchina Target
 Eseguiamo una scansione completa del target per poter raccogliere quante più informazioni possibili prima di eseguire il nostro attacco
 + Aprire il terminale sulla propria macchina (Kali Linux).
@@ -70,6 +72,8 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 **Cosiderazioni**: Questo attacco potrebbe generare un sacco di rumore, in quanto verrà visualizzato come un tentativo di accesso non riuscito nei registri eventi. Penseremo in seguito a come fare pulizia.
 
+![The Markdown Mark](images/exploit1.PNG)    ![The Markdown Mark](images/exploit2.PNG) 
+
 #### Riferimenti:
 + https://www.geeksforgeeks.org/cewl-tool-creating-custom-wordlists-tool-in-kali-linux/
 + https://www.hackingarticles.in/password-crackingsmb/
@@ -112,6 +116,8 @@ Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseg
 
 **RISULTATO**Abbiamo ottenuto una sessione meterpeter sulla macchina.
 
+![The Markdown Mark](images/psexec.PNG) 
+
 ## Rubare le credenziali SAM
 Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
 Digitare  ```hashdump``` nella sessione meterpreter e salvare le password su file credenzialiSAM.txt.
@@ -131,6 +137,8 @@ Questo tool consente di recuperare tutte le password in formato hash, un'operazi
 **3)Elencare processi**: Digitare ```ps``` nella sessione meterpeter per visualizzare tutti i processi attivi e sceglierne uno con i giusti privilegi.
 
 **4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere le credenziali disponibili degli utenti che si sono loggati.
+
+![The Markdown Mark](images/kiwi.PNG) 
 
 #### Osservazione
 Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura), quindi spostiamo la sessione su un altro processo.
@@ -161,6 +169,8 @@ A questo punto seguiamo questa procedura per ottenere le credenziali disponibli 
 
 **RISULTATO**: Abbiamo ottenuto le credenziali di wordpress.
 
+![The Markdown Mark](images/mysql.PNG) 
+![The Markdown Mark](images/mysql 2.PNG)
 
 ## Eliminazione tracce
 Una volta eseguito l'attacco, abbiamo cercato di eliminare quante più tracce possibili per ridurre le possibilità di rilevamento e investigazione.
