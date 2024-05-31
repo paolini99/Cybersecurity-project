@@ -118,7 +118,9 @@ Digitare  ```hashdump``` nella sessione meterpreter e salvare le password su fil
 Posso conservare queste password per tentare di indovinare le password offline e, eventualmente, effettuare un movimento laterale o accedere a qualche sito web. Inoltre, posso conservare queste credenziali per tentare un attacco pass-the-hash.
 
 ## Utilizzo di Kiwi (mimikatz)
- Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
+Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
+Successivamente, abbiamo utilizzato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
+Questo tool consente di recuperare tutte le password in formato hash, un'operazione che avevamo già eseguito in precedenza.Pertanto, il nostro obiettivo ora è recuperare le password di tutti gli utenti che si sono autenticati da quando la macchina è stata accesa l'ultima volta, senza dover procedere con l'estrazione offline delle password.
 
 **1)Aprire Mimikatz**: Digitare ```load kiwi``` nella sessione meterpeter.
 
@@ -126,13 +128,17 @@ Posso conservare queste password per tentare di indovinare le password offline e
 
 **3)Spostarsi nel processo**: Digitare ```migrate 'pid scelto'``` nella sessione meterpeter. (es scegliamo il pid del processo lssa).
 
-**4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere tutte le credenziali disponibili.
+**4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere le credenziali disponibili degli utenti che si sono loggati.
+
+Vediamo se è possibile estrarre qualche altra informazione dal registro LSSA.
+
+**5)Rubare dal registro LSSA**: Digitare ```lsa_dump_system``` per ottenere le informazioni disponibili salvate nel registro LSSA.
 
 #### Osservazine
 Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura), quindi spostiamo la sessione su un altro processo.
 
 #### Considerazioni
-Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo stesso dominio dell' utente Administrator.
+Abbiamo ottenuto delle credenziali valide per gli utenti loggati e per l'utente sshd_server per il servizio di OpenSSHd.
 
 ## Accesso MySql
 Abbiamo cercato di accedere al server MySQL per rubare ulteriori credenziali eseguendo un brute force con il dizionario utilizzato in precedenza.
