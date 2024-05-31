@@ -41,7 +41,7 @@ Eseguiamo una scansione completa del target per poter raccogliere quante più in
 
 
 #### Riferimenti
-https://www.redhat.com/sysadmin/quick-nmap-inventory
++ https://www.redhat.com/sysadmin/quick-nmap-inventory
 
 ## Exploit della porta 445
 Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit di brute force noto per ottenere le credenziali SMB. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario per gli username e password.
@@ -97,7 +97,7 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 **RISULTATO**:Abbiamo ottenuto gli utenti locali SAM che possiamo salvare in un file *user.txt*.
 
 #### Riferimenti:
-https://www.hackingarticles.in/smb-penetration-testing-port-445/
++ https://www.hackingarticles.in/smb-penetration-testing-port-445/
 
 ## Esecuzione di Comandi da Remoto
 Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
@@ -114,7 +114,7 @@ Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseg
 
 **6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
-**RISULTATO**Abbiamo ottenuto una sessione meterpeter sulla macchina.
+**RISULTATO**: Abbiamo ottenuto una sessione meterpeter sulla macchina.
 
 ![The Markdown Mark](images/psexec.PNG) 
 
@@ -177,7 +177,7 @@ A questo punto seguiamo questa procedura per ottenere le credenziali disponibli 
 ## Eliminazione tracce
 Una volta eseguito l'attacco, abbiamo cercato di eliminare quante più tracce possibili per ridurre le possibilità di rilevamento e investigazione.
 
-**1)Eliminazione logs**: Eliminare i logs digitando il comando: ```clearev``` nella sessione meterpreter.
++ **Eliminazione logs**: Eliminare i logs digitando il comando: ```clearev``` nella sessione meterpreter.
 
 ## Attacco DOS
 Infine, abbiamo eseguito un attacco DoS (Denial of Service) sfruttando la vulnerabilità *CVE-2012-0002* che causa un buffer overflow. Questo è stato fatto per sviare l'attenzione del difensore dall'attacco effettivo, concentrando le sue risorse su questo evento.
@@ -200,5 +200,5 @@ Se il la macchina è vulnerabile proseguire.
 **4)Lanciare il modulo**: eseguire ```run``` .
 
 ##### Riferimenti:
-https://tremblinguterus.blogspot.com/2020/11/metasploitable-3-windows-walkthrough_88.html?m=1
-https://www.rapid7.com/db/modules/auxiliary/dos/windows/rdp/ms12_020_maxchannelids/
++ https://tremblinguterus.blogspot.com/2020/11/metasploitable-3-windows-walkthrough_88.html?m=1
++ https://www.rapid7.com/db/modules/auxiliary/dos/windows/rdp/ms12_020_maxchannelids/
