@@ -62,7 +62,9 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 **5)Impostare il file delle password**: Specificare il percorso del file che contiene le password: ```set PASS_FILE /home/kali/metasploitable3.txt.```
 
-**6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
+**6)Attivare opzione**: Impostare ```set STOP_ON_SUCCESS true``` in modo che l'exploit termini appena trovare delle credenziali valide (cosi genero meno rumore).
+
+**7)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
 **RISULTATO**: Abbiamo ottenuto delle credenziali di accesso SMB.
 
@@ -74,7 +76,7 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 
 ## Determinazione utenti locali Sam
- Utilizzando le credenziali SMB, abbiamo utilizzato un altro exploit per determinare gli utenti locali della macchina.
+ Utilizzando le credenziali SMB, raccogliamo ulteriori informazioni sulla vittima utilizzando un altro exploit ad esempio per determinare gli utenti locali della macchina.
  
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando ```msfconsole``` per avviare Metasploit.
 
