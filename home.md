@@ -151,11 +151,11 @@ A questo punto seguiamo questa procedura per ottenere le credenziali disponibli 
 
 **1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root -p``` nel terminale.
 
-**2)** Digitare ```SHOW DATABASES``` per vedere i database disponibili.
+**2)** Digitare ```SHOW DATABASES;``` per vedere i database disponibili.
 
-**3)** Digitare ```USE WORDPRESS``` per selezionare il database di wordpress (potrei trovare delle credenziali).
+**3)** Digitare ```USE WORDPRESS;``` per selezionare il database di wordpress (potrei trovare delle credenziali).
 
-**4)** Digitare ```SELECT * FROM wp_users` per cercare informazioni utili in questa tabella.
+**4)** Digitare ```SELECT * FROM wp_users;` per cercare informazioni utili in questa tabella.
 
 **5)** Salviamo le credenziali su un file nel nostro pc.
 
