@@ -78,7 +78,7 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
  
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando ```msfconsole``` per avviare Metasploit.
 
-**2)Caricare il modulo SMB enumusers Scanner**: Una volta aperto Metasploit, caricare il modulo ```auxiliary/scanner/smb/smb_enumusers``` per eseguire una scansione degli utenti locali Sam: .
+**2)Caricare il modulo**: Una volta aperto Metasploit, caricare il modulo ```auxiliary/scanner/smb/smb_enumusers``` per eseguire una scansione degli utenti locali Sam.
 
 **3)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
@@ -88,19 +88,13 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 **6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
-#### RISULTATO
-Abbiamo ottenuto gli utenti locali SAM che possiamo salvare in un file *user.txt*.
-
-#### CONSIDERAZIONI
-Si può notare che nel file che ho salvato ci sono alcuni utenti presenti anche nelle credenziali SMB.
-Potremmo provare un exploit usando le stesse credenziali usate per SMB.
+**RISULTATO**:Abbiamo ottenuto gli utenti locali SAM che possiamo salvare in un file *user.txt*.
 
 #### Riferimenti:
 https://www.hackingarticles.in/smb-penetration-testing-port-445/
 
 ## Esecuzione di Comandi da Remoto
 Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseguire comandi da remoto e aprire una sessione Meterpreter, un potente payload di Metasploit che ci ha fornito accesso remoto al sistema.
-
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
@@ -114,15 +108,14 @@ Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseg
 
 **6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
-#### RISULTATO
-Abbiamo ottenuto una sessione meterpeter sulla macchina.
+**RISULTATO**Abbiamo ottenuto una sessione meterpeter sulla macchina.
 
 ## Rubare le credenziali SAM
 Una volta ottenuto l'accesso, abbiamo utilizzato l'estensione hashdump di Meterpreter per rubare gli hash delle password locali del sistema.
-Digitare  ```hashdump``` e salvare le password su file credenzialiSAM.txt.
+Digitare  ```hashdump``` nella sessione meterpreter e salvare le password su file credenzialiSAM.txt.
 
 #### Considerazioni
-Posso conservare queste password per tentare un attacco di forza bruta offline e scoprire le password in chiaro di ogni utente, per eventualmente tentare un movimento laterale o accedere a qualche sito web. Posso anche conservare queste credenziali per tentare un pass the hash.
+Posso conservare queste password per tentare di indovinare le password offline e, eventualmente, effettuare un movimento laterale o accedere a qualche sito web. Inoltre, posso conservare queste credenziali per tentare un attacco pass-the-hash.
 
 ## Utilizzo di Kiwi (mimikatz)
  Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
@@ -136,7 +129,7 @@ Posso conservare queste password per tentare un attacco di forza bruta offline e
 **4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere tutte le credenziali disponibili.
 
 #### Osservazine
-Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura).
+Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura), quindi spostiamo la sessione su un altro processo.
 
 #### Considerazioni
 Abbiamo ottenuto delle credenziali valide per il l'utente sshd_server con lo stesso dominio dell' utente Administrator.
