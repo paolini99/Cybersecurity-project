@@ -170,7 +170,7 @@ A questo punto seguiamo questa procedura per ottenere le credenziali disponibli 
 **RISULTATO**: Abbiamo ottenuto le credenziali di wordpress.
 
 ![The Markdown Mark](images/mysql.PNG) 
-![The Markdown Mark](images/mysql 2.PNG)
+![The Markdown Mark](images/mysql2.PNG)
 
 ## Eliminazione tracce
 Una volta eseguito l'attacco, abbiamo cercato di eliminare quante più tracce possibili per ridurre le possibilità di rilevamento e investigazione.
