@@ -124,17 +124,13 @@ Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-expl
 Successivamente, abbiamo utilizzato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
 Questo tool consente di recuperare tutte le password in formato hash, un'operazione che avevamo già eseguito in precedenza.Pertanto, il nostro obiettivo ora è recuperare le password di tutti gli utenti che si sono autenticati da quando la macchina è stata accesa l'ultima volta, senza dover procedere con l'estrazione offline delle password.
 
-**1)Aprire Mimikatz**: Digitare ```load kiwi``` nella sessione meterpeter.
+**1)Spostarsi nel processo**: Digitare ```migrate 'pid scelto'``` nella sessione meterpeter. (es scegliamo il pid del processo lssa che ha privilegi elevati).
 
-**2)Elencare processi**: Digitare ```ps``` nella sessione meterpeter per visualizzare tutti i processi attivi e sceglierne uno con i giusti privilegi.
+**2)Aprire Mimikatz**: Digitare ```load kiwi``` nella sessione meterpeter.
 
-**3)Spostarsi nel processo**: Digitare ```migrate 'pid scelto'``` nella sessione meterpeter. (es scegliamo il pid del processo lssa).
+**3)Elencare processi**: Digitare ```ps``` nella sessione meterpeter per visualizzare tutti i processi attivi e sceglierne uno con i giusti privilegi.
 
 **4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere le credenziali disponibili degli utenti che si sono loggati.
-
-Vediamo se è possibile estrarre qualche altra informazione dal registro LSSA.
-
-**5)Rubare dal registro LSSA**: Digitare ```lsa_dump_system``` per ottenere le informazioni disponibili salvate nel registro LSSA.
 
 #### Osservazione
 Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura), quindi spostiamo la sessione su un altro processo.
@@ -153,7 +149,7 @@ Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 
 A questo punto seguiamo questa procedura per ottenere le credenziali disponibli dal database:
 
-**1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root ``` nel terminale.
+**1)** Per accedere a mysql da remoto digitare  ```mysql -h 10.0.2.4 -u root -p``` nel terminale.
 
 **2)** Digitare ```SHOW DATABASES``` per vedere i database disponibili.
 
