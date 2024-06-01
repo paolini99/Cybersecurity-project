@@ -139,7 +139,7 @@ Questo tool consente di recuperare tutte le password in formato hash, un'operazi
 
 **4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere le credenziali disponibili degli utenti che si sono loggati.
 
-![The Markdown Mark](images/kiwi2.PNG) 
+![The Markdown Mark](images/kiwi.PNG) 
 
 #### Osservazione
 Per qualche motivo eseguendo meterpeter su *powershell.exe* kiwi ovvero mimikatz non funziona (osservando i processi la cosa che cambia e l'archittetura), quindi spostiamo la sessione su un altro processo.
