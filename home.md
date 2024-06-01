@@ -31,7 +31,7 @@ Adesso andiamo a eseguire una scansione della rete.
 ### Scansione Completa della Macchina Target
 Eseguiamo una scansione completa del target per poter raccogliere quante più informazioni possibili prima di eseguire il nostro attacco
 + Aprire il terminale sulla propria macchina (Kali Linux).
-+ Digitare: ```nmap -v -sS -sV -T4 -A 10.0.2.4.```
++ Digitare: ```sudo nmap -v -sS -sV -T4 -A 10.0.2.4.```
   - v: Modalità verbosa.
   - sS: (SYN stealth scan): esegue una scansione SYN stealth, che è più silenziosa e meno invasiva.
   - T4: Alta velocità di scansione.
