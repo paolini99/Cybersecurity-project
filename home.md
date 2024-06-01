@@ -157,6 +157,8 @@ Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 
 **RISULTATO**: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
 
+**RISULTATO**: Dopo eseguito questo comando, è consigliabile attendere prima di continuare l'attacco, poiché il server potrebbe essere sovraccaricato dalle numerose richieste. Per evitare questo problema, è preferibile selezionare script specifici anziché eseguirli tutti, riducendo così il rischio di interruzioni del servizio.
+
 ![The Markdown Mark](images/mysql.PNG) 
 
 ### Estrazione delle credenziali
