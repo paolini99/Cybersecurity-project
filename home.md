@@ -164,7 +164,7 @@ In particolare, MySQL implementa un sistema di gestione delle connessioni per pr
 
 1)Digitare  ```powershell``` nella sessione meterpreter.
 
-2)Digitare  ```Get-Service``` e cercare il servizio corrispondente a my sql.
+2)Digitare  ```Get-Service``` e cercare il servizio corrispondente a MySql.
 
 3)Digitare  ```Restart-Service -Name wampmysqld``` nella sessione meterpreter.
 
