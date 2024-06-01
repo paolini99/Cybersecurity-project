@@ -185,7 +185,7 @@ Una volta eseguito l'attacco, abbiamo cercato di eliminare quante più tracce po
 ## Attacco DOS
 Infine, abbiamo eseguito un attacco DoS (Denial of Service) sfruttando la vulnerabilità *CVE-2012-0002* che causa un buffer overflow. Questo è stato fatto per sviare l'attenzione del difensore dall'attacco effettivo, concentrando le sue risorse su questo evento.
 Il difetto può essere riscontrato nel modo in cui viene gestito il pacchetto T.125 ConnectMCSPDU nel campo maxChannelIDs, che risulterà nell'utilizzo di un puntatore non valido, causando quindi una condizione di negazione del servizio. 
-
+L'attacco ha preso di mira il servizio Microsoft Remote Desktop Protocol (RDP) sulla porta 3389.
 ### Verifica della Vulnerabilità RDP
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
