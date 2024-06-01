@@ -152,11 +152,14 @@ Abbiamo cercato di accedere al server MySQL per rubare ulteriori credenziali ese
 Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
 Questa volta invece di utilizzare metasploit proviamo a utilizzare gli script NSE di nmap per verificare se è presente qualche vulnerabilità o impostazione di default.
 
+### a)Scansione vulnerabilità
 Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 
 **RISULTATO**: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
 
 ![The Markdown Mark](images/mysql.PNG) 
+
+### b) Estrazione delle credenziali
 
 A questo punto seguiamo questa procedura per ottenere le credenziali disponibli dal database:
 
@@ -171,7 +174,6 @@ A questo punto seguiamo questa procedura per ottenere le credenziali disponibli 
 **5)** Salviamo le credenziali su un file nel nostro pc.
 
 **RISULTATO**: Abbiamo ottenuto le credenziali di wordpress.
-
 
 ![The Markdown Mark](images/mysql2.PNG)
 
