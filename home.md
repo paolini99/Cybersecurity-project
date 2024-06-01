@@ -6,7 +6,7 @@ Lo scopo principale di questa simulazione è accedere al sistema target e rubare
 L'attacco è stato eseguito seguendo diverse fasi chiave.
 
 ## Scansione della rete
-In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando Nmap. L'obiettivo era identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
+In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete utilizzando Nmap. L'obiettivo è identificare le macchine attive e raccogliere informazioni sui sistemi operativi in esecuzione e sui servizi disponibili.
 
 Dobbiamo identificare il nostro indirizzo IP e la netmask al fine di eseguire una scansione della rete e individuare gli indirizzi IP disponibili per eventuali attacchi. Utilizzando l'indirizzo IP e la netmask, possiamo calcolare il range di indirizzi IP validi nella nostra rete locale, escludendo gli indirizzi non utilizzabili come quelli di broadcast e di rete stessa. Questo ci consente di configurare correttamente gli strumenti di scansione per eseguire una scansione mirata e precisa, concentrando le risorse sui dispositivi e servizi attivi all'interno della nostra rete locale.
 
@@ -20,6 +20,7 @@ Seguiamo questi passaggi:
 **Cosiderazioni**: L'indirizzo IP 10.0.2.19 con una netmask di 255.255.255.0 significa che i primi 24 bit dell'indirizzo IP sono dedicati all'identificazione della rete, mentre gli ultimi 8 bit sono destinati agli host all'interno della rete. Utilizzando la notazione CIDR (/24), possiamo rappresentare questa rete come 10.0.2.0/24, il che indica che i primi 24 bit sono la parte di rete fissa e gli ultimi 8 bit possono variare per identificare singoli host all'interno della rete.
 
 ### b)Scansione degli Indirizzi IP nella Rete
+Adesso andiamo a eseguire una scansione della rete.
 + Aprire il terminale sulla propria macchina (Kali Linux).
 + Digitare ```nmap 10.0.2.0/24```.
 
@@ -45,7 +46,6 @@ Eseguiamo una scansione completa del target per poter raccogliere quante più in
 
 ## Exploit della porta 445
 Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit di brute force noto per ottenere le credenziali SMB. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario per gli username e password.
-Adesso andremo a creare un dizionario che utilizzeremo per i nomi utente e password. Successivamente, utilizzeremo un exploit per tentare il brute force sulla porta 445 utilizzando questo dizionario.
 
 ### a)Creazione del dizionario
 Utilizziamo il comando Kali cewl per costruire un nuovo elenco di parole dal contenuto della pagina di configurazione di metasploitable3: 
