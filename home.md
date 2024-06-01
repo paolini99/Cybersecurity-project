@@ -160,7 +160,7 @@ Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 ![The Markdown Mark](images/mysql.PNG) 
 
 ### Problema troppe richieste
-In particolare, MySQL implementa un sistema di gestione delle connessioni chiamato connection control per prevenire attacchi di tipo brute force o denial of service (DoS). Se riceve troppe richieste, il servizio si blocca. Ho risolto questo problema riavviando il servizio attraverso Meterpreter.
+In particolare, MySQL implementa un sistema di gestione delle connessioni per prevenire attacchi di tipo brute force o denial of service (DoS). Se riceve troppe richieste, il servizio si blocca. Ho risolto questo problema riavviando il servizio attraverso Meterpreter.
 
 1)Digitare  ```powershell``` nella sessione meterpreter.
 
