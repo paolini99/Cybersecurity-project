@@ -47,6 +47,8 @@ Eseguiamo una scansione completa del target per poter raccogliere quante più in
 ## Exploit della porta 445
 Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit di brute force noto per ottenere le credenziali SMB. Questo è stato realizzato attraverso un attacco di forza bruta e l'utilizzo di un dizionario per gli username e password.
 
+SMB, o Server Message Block, è un protocollo di rete utilizzato principalmente per la condivisione di file, stampanti e altre risorse tra computer in una rete. Il protocollo SMB funziona secondo un modello client-server, dove un dispositivo (il client) invia richieste per accedere a risorse gestite da un altro dispositivo (il server). Una delle caratteristiche principali di SMB è la possibilità di autenticare e autorizzare gli utenti, assicurando che solo le persone autorizzate possano accedere alle risorse condivise.
+
 ### a)Creazione del dizionario
 Utilizziamo il comando Kali cewl per costruire un nuovo elenco di parole dal contenuto della pagina di configurazione di metasploitable3: 
 Digitare nel terminare: ```cewl -d 0 -w metasploitable3.txt https://github.com/rapid7/metasploitable3/wiki/Configuration``` (l'opzione -d 0 indica che i collegamenti ipertestuali non devono essere seguiti)
@@ -202,3 +204,8 @@ Se il la macchina è vulnerabile proseguire.
 ##### Riferimenti:
 + https://tremblinguterus.blogspot.com/2020/11/metasploitable-3-windows-walkthrough_88.html?m=1
 + https://www.rapid7.com/db/modules/auxiliary/dos/windows/rdp/ms12_020_maxchannelids/
+
+## Conclusioni
+Il penetration test su Metasploitable 3 con Kali Linux ha rivelato diverse vulnerabilità critiche. La scansione della rete ha identificato servizi aperti, tra cui SMB e MySQL, che sono stati sfruttati per ottenere accesso non autorizzato. Utilizzando attacchi brute force, abbiamo ottenuto credenziali SMB e accesso remoto tramite Meterpreter. Inoltre, l'utilizzo di strumenti come Mimikatz ha permesso di estrarre ulteriori credenziali dalla memoria del sistema.
+
+Il test ha dimostrato l'importanza di implementare password robuste, aggiornare regolarmente i sistemi, migliorare la configurazione di sicurezza dei servizi e adottare efficaci pratiche di monitoraggio. Migliorando questi aspetti, si può significativamente ridurre la superficie di attacco e proteggere meglio il sistema da intrusioni non autorizzate.
