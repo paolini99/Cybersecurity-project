@@ -10,7 +10,7 @@ In questa fase, abbiamo eseguito una scansione degli indirizzi IP della rete uti
 
 Dobbiamo identificare il nostro indirizzo IP e la netmask al fine di eseguire una scansione della rete e individuare gli indirizzi IP disponibili per eventuali attacchi. Utilizzando l'indirizzo IP e la netmask, possiamo calcolare il range di indirizzi IP validi nella nostra rete locale, escludendo gli indirizzi non utilizzabili come quelli di broadcast e di rete stessa. Questo ci consente di configurare correttamente gli strumenti di scansione per eseguire una scansione mirata e precisa, concentrando le risorse sui dispositivi e servizi attivi all'interno della nostra rete locale.
 
-### a)Identificazione dell'Indirizzo IP e della Netmask
+### Identificazione dell'Indirizzo IP e della Netmask
 Seguiamo questi passaggi:
 + Aprire il terminale sulla propria macchina (Kali Linux).
 + Eseguire il comando ```ifconfig``` per determinare l'indirizzo IP e la netmask della macchina.
@@ -19,7 +19,7 @@ Seguiamo questi passaggi:
 
 **Cosiderazioni**: L'indirizzo IP 10.0.2.19 con una netmask di 255.255.255.0 significa che i primi 24 bit dell'indirizzo IP sono dedicati all'identificazione della rete, mentre gli ultimi 8 bit sono destinati agli host all'interno della rete. Utilizzando la notazione CIDR (/24), possiamo rappresentare questa rete come 10.0.2.0/24, il che indica che i primi 24 bit sono la parte di rete fissa e gli ultimi 8 bit possono variare per identificare singoli host all'interno della rete.
 
-### b)Scansione degli Indirizzi IP nella Rete
+### Scansione degli Indirizzi IP nella Rete
 Adesso andiamo a eseguire una scansione della rete.
 + Aprire il terminale sulla propria macchina (Kali Linux).
 + Digitare ```nmap 10.0.2.0/24```.
@@ -28,7 +28,7 @@ Adesso andiamo a eseguire una scansione della rete.
 
 ![The Markdown Mark](images/nmap.PNG) 
 
-### c)Scansione Completa della Macchina Target
+### Scansione Completa della Macchina Target
 Eseguiamo una scansione completa del target per poter raccogliere quante più informazioni possibili prima di eseguire il nostro attacco
 + Aprire il terminale sulla propria macchina (Kali Linux).
 + Digitare: ```nmap -v -sS -sV -T4 -A 10.0.2.4.```
@@ -49,11 +49,11 @@ Identificata una macchina con la porta 445 aperta, abbiamo sfruttato un exploit 
 
 SMB, o Server Message Block, è un protocollo di rete utilizzato principalmente per la condivisione di file, stampanti e altre risorse tra computer in una rete. Il protocollo SMB funziona secondo un modello client-server, dove un dispositivo (il client) invia richieste per accedere a risorse gestite da un altro dispositivo (il server). Una delle caratteristiche principali di SMB è la possibilità di autenticare e autorizzare gli utenti, assicurando che solo le persone autorizzate possano accedere alle risorse condivise.
 
-### a)Creazione del dizionario
+### Creazione del dizionario
 Utilizziamo il comando Kali cewl per costruire un nuovo elenco di parole dal contenuto della pagina di configurazione di metasploitable3: 
 Digitare nel terminare: ```cewl -d 0 -w metasploitable3.txt https://github.com/rapid7/metasploitable3/wiki/Configuration``` (l'opzione -d 0 indica che i collegamenti ipertestuali non devono essere seguiti)
 
-### b)Esexuzione Exploit
+### Esexuzione Exploit
 Andiamo ad eseguire l'exploit seguendo questa procedura:
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
@@ -152,14 +152,14 @@ Abbiamo cercato di accedere al server MySQL per rubare ulteriori credenziali ese
 Nella prima fase di scansione della rete, abbiamo rilevato che sulla porta 3306 è in esecuzione un database MySQL. Poiché il nostro obiettivo è ottenere il maggior numero possibile di credenziali, abbiamo deciso di prenderlo di mira.
 Questa volta invece di utilizzare metasploit proviamo a utilizzare gli script NSE di nmap per verificare se è presente qualche vulnerabilità o impostazione di default.
 
-### a)Scansione vulnerabilità
+### Scansione vulnerabilità
 Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 
 **RISULTATO**: Dopo l' esecuzione dello script, si può vedere che è presente l' account di default *root* senza password.
 
 ![The Markdown Mark](images/mysql.PNG) 
 
-### b) Estrazione delle credenziali
+### Estrazione delle credenziali
 
 A questo punto seguiamo questa procedura per ottenere le credenziali disponibli dal database:
 
@@ -186,7 +186,7 @@ Una volta eseguito l'attacco, abbiamo cercato di eliminare quante più tracce po
 Infine, abbiamo eseguito un attacco DoS (Denial of Service) sfruttando la vulnerabilità *CVE-2012-0002* che causa un buffer overflow. Questo è stato fatto per sviare l'attenzione del difensore dall'attacco effettivo, concentrando le sue risorse su questo evento.
 Il difetto può essere riscontrato nel modo in cui viene gestito il pacchetto T.125 ConnectMCSPDU nel campo maxChannelIDs, che risulterà nell'utilizzo di un puntatore non valido, causando quindi una condizione di negazione del servizio. 
 
-### a)Verifica della Vulnerabilità RDP
+### Verifica della Vulnerabilità RDP
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
@@ -198,13 +198,13 @@ Il difetto può essere riscontrato nel modo in cui viene gestito il pacchetto T.
 
 Se la macchina è vulnerabile proseguire.
 
-### b)Esecuzione dell'Attacco DoS
+### Esecuzione dell'Attacco DoS
 
-**5)Caricare il modulo bluekeep**: Una volta aperto Metasploit, caricare il modulo ```dos/windows/rdp/ms12_020_maxchannelids```.
+**1)Caricare il modulo bluekeep**: Una volta aperto Metasploit, caricare il modulo ```dos/windows/rdp/ms12_020_maxchannelids```.
 
-**6)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
+**2)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
-**4)Lanciare il modulo**: eseguire ```run``` .
+**3)Lanciare il modulo**: eseguire ```run``` .
 
 ##### Riferimenti:
 + https://tremblinguterus.blogspot.com/2020/11/metasploitable-3-windows-walkthrough_88.html?m=1
