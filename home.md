@@ -186,6 +186,8 @@ Una volta eseguito l'attacco, abbiamo cercato di eliminare quante più tracce po
 Infine, abbiamo eseguito un attacco DoS (Denial of Service) sfruttando la vulnerabilità *CVE-2012-0002* che causa un buffer overflow. Questo è stato fatto per sviare l'attenzione del difensore dall'attacco effettivo, concentrando le sue risorse su questo evento.
 Il difetto può essere riscontrato nel modo in cui viene gestito il pacchetto T.125 ConnectMCSPDU nel campo maxChannelIDs, che risulterà nell'utilizzo di un puntatore non valido, causando quindi una condizione di negazione del servizio. 
 
+### a)Verifica della Vulnerabilità RDP
+
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
 **2)Caricare il modulo**: Una volta aperto Metasploit, caricare il modulo ```auxiliary/scanner/rdp/ms12_020_check``` per vedere se la macchina è vulnerabile a questo attacco.
@@ -195,6 +197,8 @@ Il difetto può essere riscontrato nel modo in cui viene gestito il pacchetto T.
 **4)Lanciare il modulo**: eseguire ```run``` .
 
 Se la macchina è vulnerabile proseguire.
+
+### b)Esecuzione dell'Attacco DoS
 
 **5)Caricare il modulo bluekeep**: Una volta aperto Metasploit, caricare il modulo ```dos/windows/rdp/ms12_020_maxchannelids```.
 
