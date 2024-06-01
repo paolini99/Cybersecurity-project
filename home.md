@@ -161,9 +161,13 @@ Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 
 ### Problema troppe richieste
 In particolare, MySQL implementa un sistema di gestione delle connessioni chiamato connection control per prevenire attacchi di tipo brute force o denial of service (DoS). Se riceve troppe richieste, il servizio si blocca. Ho risolto questo problema riavviando il servizio attraverso Meterpreter.
+
 1)Digitare  ```powershell``` nella sessione meterpreter.
+
 2)Digitare  ```Get-Service``` e cercare il servizio corrispondente a my sql.
+
 3)Digitare  ```Restart-Service -Name wampmysqld``` nella sessione meterpreter.
+
 
 ### Estrazione delle credenziali
 
