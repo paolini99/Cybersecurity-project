@@ -169,9 +169,11 @@ A questo punto seguiamo questa procedura per ottenere le credenziali disponibli 
 
 **3)** Digitare ```USE WORDPRESS;``` per selezionare il database di wordpress (potrei trovare delle credenziali).
 
-**4)** Digitare ```SELECT * FROM wp_users;` per cercare informazioni utili in questa tabella.
+**4)** Digitare ```SHOW TABLES;``` per vedere le tabelle disponibili.
 
-**5)** Salviamo le credenziali su un file nel nostro pc.
+**5)** Digitare ```SELECT * FROM wp_users;``` per cercare informazioni utili in questa tabella.
+
+**6)** Salviamo le credenziali su un file nel nostro pc.
 
 **RISULTATO**: Abbiamo ottenuto le credenziali di wordpress.
 
