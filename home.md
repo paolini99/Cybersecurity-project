@@ -162,7 +162,7 @@ Eseguiamo ```nmap --script all -p3306 10.0.2.4``` per effettuare la scansione.
 ### Problema troppe richieste
 In particolare, MySQL implementa un sistema di gestione delle connessioni per prevenire attacchi di tipo brute force o denial of service (DoS). Se riceve troppe richieste, il servizio si blocca. Ho risolto questo problema riavviando il servizio attraverso Meterpreter.
 
-1)Digitare  ```shell``` nella sessione meterpreter.
+1)Digitare  ```shell``` nella sessione meterpreter precedentemente ottenuta.
 
 2)Digitare  ```powershell```.
 
