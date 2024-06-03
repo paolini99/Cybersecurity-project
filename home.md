@@ -220,6 +220,8 @@ Se la macchina è vulnerabile proseguire.
 
 **3)Lanciare il modulo**: eseguire ```run``` .
 
+![The Markdown Mark](images/dos.PNG)
+
 ##### Riferimenti:
 + https://tremblinguterus.blogspot.com/2020/11/metasploitable-3-windows-walkthrough_88.html?m=1
 + https://www.rapid7.com/db/modules/auxiliary/dos/windows/rdp/ms12_020_maxchannelids/
