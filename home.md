@@ -204,7 +204,7 @@ L'attacco ha preso di mira il servizio Microsoft Remote Desktop Protocol (RDP) s
 
 **1)Aprire Metasploit**: Aprire il terminale e digitare il comando per avviare Metasploit:```msfconsole```.
 
-**2)Caricare il modulo**: Una volta aperto Metasploit, caricare il modulo ```auxiliary/scanner/rdp/ms12_020_check``` per vedere se la macchina è vulnerabile a questo attacco.
+**2)Caricare il modulo**: Una volta aperto Metasploit, digitare ``` use auxiliary/scanner/rdp/ms12_020_check``` per vedere se la macchina è vulnerabile a questo attacco.
 
 **3)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
@@ -214,7 +214,7 @@ Se la macchina è vulnerabile proseguire.
 
 ### Esecuzione dell'Attacco DoS
 
-**1)Caricare il modulo bluekeep**: Una volta aperto Metasploit, caricare il modulo ```dos/windows/rdp/ms12_020_maxchannelids```.
+**1)Caricare il modulo**: Una volta aperto Metasploit, digitare ``` use dos/windows/rdp/ms12_020_maxchannelids```.
 
 **2)Impostare l'host bersaglio (RHOSTS)**: Specificare l'indirizzo IP del sistema bersaglio: ```set RHOSTS 10.0.2.4```
 
