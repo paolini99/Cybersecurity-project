@@ -1,4 +1,4 @@
-# Cybersecurity Project
+# Penetration Testing and Vulnerability Exploitation on Metasploitable 3 with Kali Linux
 
 ## Introduzione
 In questo report, esamineremo un'esercitazione pratica di penetration testing in cui abbiamo condotto una serie di attacchi controllati all'interno di un ambiente di test. Abbiamo utilizzato Metasploitable 3 come macchina bersaglio e Kali Linux come macchina attaccante, entrambe configurate per operare sulla stessa rete. Questa configurazione ci ha permesso di simulare un ambiente realistico in cui un attaccante può tentare di compromettere un sistema target.
